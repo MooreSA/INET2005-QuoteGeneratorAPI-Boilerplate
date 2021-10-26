@@ -1,0 +1,22 @@
+﻿<div>
+    <h1 class="text-success">QuoteGeneratorAPI Boilerplate</h1>
+    <h5 class="text-success">Project II : INET2005 Web Appplication Programming I</h5>
+    <p>
+    This boilerplate is the starting project folder for the Quote Generator API (Project II).
+    </p>
+    <p>
+    See notes below:
+    </p>
+    <ul>
+        <li>This project folder contains two web apps: the Web API and the Administration Web App.
+        As a result, the project folder contains two controllers instead of the usual one:
+            <ul>
+            <li>QuoteAdminController handles the requests to the admin web app to add and delete quotes</li>
+            <li>QuoteAPIController handles the requests to get the quote data as JSON. This would typically be called from a client side web app, but for this project you can test it with a browser request. See QuoteAPIController.cs comments for details.</li>
+            </ul>
+        </li>
+        <li>Your app could contain one model that is shared by both the Web API and the Admin web app, or you could have two seperate models. Either way, be sure to avoid redundancy.</li>
+        <li>This view is only used by the Quote Administration web app. There should be no reason to add any others to the project folder.</li>
+    </ul>
+    
+</div>
