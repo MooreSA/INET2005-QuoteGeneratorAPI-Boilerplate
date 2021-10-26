@@ -11,4 +11,4 @@ In the project directory, you run:
 ### `docker compose up`
 ### `dotnet watch run`
 
-To build and run the Aweb app
+To build and run the web app
