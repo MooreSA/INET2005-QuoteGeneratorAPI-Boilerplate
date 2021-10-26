@@ -1,11 +1,14 @@
-# QuoteGeneratorAPI for INET2005 Web Application Programming I with MySQL
+# QuoteGeneratorAPI Boilerplate for Project II #
+# INET2005 Web Application Programming I #
 
-For convenience, I have created a QuoteGeneratorAPI template of an ASP.NET Core 5 project folder and pushed it to github. Note that the name of the project will need to be changed from "QuoteGeneratorAPI" to whatever your project is named. Follow instructions on the index.cshtml view.
+To quickly get you coding, this boilerplate project folder is the starting point for Project II.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you run:
 
+### `docker compose build`
+### `docker compose up`
 ### `dotnet watch run`
 
-To build and run the ASP.NET Core 5 web app
+To build and run the Aweb app
