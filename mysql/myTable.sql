@@ -6,18 +6,22 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-CREATE TABLE IF NOT EXISTS `tblTest` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `field1` int(10) NOT NULL,
-  `field2` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
---
--- Dumping data for table `tblGrades`
---
+CREATE TABLE IF NOT EXISTS quotes (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  author varchar(100) NOT NULL,
+  quote varchar(1000) NOT NULL,
+  permalink varchar(100) NOT NULL,
+  image varchar(100) NOT NULL
+);
 
-INSERT INTO `tblTest` (`id`, `field1`, `field2`) VALUES
-(1, 2, 'test1'),
-(2, 8, 'test2'),
-(3, 3, 'test3');
+INSERT INTO `quotes` (`author`, `quote`, `permalink`, `image`) VALUES
+('Albert Einstein', 'I have no special talent. I am only passionately curious.', 'albert-einstein', '1-albert-einstein.jpg'),
+('Albert Einstein', 'I am thankful for all of those who said NO to me. It''s because of them I''m doing it.', 'albert-einstein', '2-albert-einstein.jpg'),
+('Albert Einstein', 'I am not a product of my circumstances. I am a product of my decisions.', 'albert-einstein', '3-albert-einstein.jpg'),
+('Albert Einstein', 'I think and that is all that I am.', 'albert-einstein', '4-albert-einstein.jpg'),
+('Albert Einstein', 'I have not failed. I''ve just found 10,000 ways that won''t work.', 'albert-einstein', '5-albert-einstein.jpg'),
+('Albert Einstein', 'I am not a product of my circumstances. I am a product of my decisions.', 'albert-einstein', '6-albert-einstein.jpg'),
+('Albert Einstein', 'I think and that is all that I am.', 'albert-einstein', '7-albert-einstein.jpg'),
+('Albert Einstein', 'I have not failed. I''ve just found 10,000 ways that won''t work.', 'albert-einstein', '8-albert-einstein.jpg'),
+('Albert Einstein', 'I am not a product of my circumstances. I am a product of my decisions.', 'albert-einstein', '9-albert-einstein.jpg');

@@ -24,6 +24,8 @@ namespace QuoteGeneratorAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            // data caching
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +56,7 @@ namespace QuoteGeneratorAPI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=QuoteAdmin}/{action=Index}/{id?}");
+                    pattern: "{controller=QuoteAdmin}/{action=data}/{id?}");
             });
         }
     }

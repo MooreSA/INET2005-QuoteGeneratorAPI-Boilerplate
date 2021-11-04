@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Memory;
+
+using QuoteGeneratorAPI.Models;
+
 
 namespace quoteGeneratorAPI.Controllers {
     // attribute is required for Web APIs
@@ -10,6 +14,12 @@ namespace quoteGeneratorAPI.Controllers {
     [DisableCors]
 
     public class QuoteAPIController : ControllerBase {
+
+        private IMemoryCache _cache;
+
+        public QuoteAPIController(IMemoryCache memoryCache) {
+            _cache = memoryCache;
+        }
 
         // set to get instead of HttpPost
         [HttpGet]
@@ -22,7 +32,15 @@ namespace quoteGeneratorAPI.Controllers {
             
             // test this out by hitting https://localhost:5001/data
             return test;
-        }        
+        }
+
+        [HttpGet]
+        [Route("data/{count}")]
+        public ActionResult<List<Quote>> Get(int count) {
+            QuoteManager qm = new QuoteManager(_cache);
+            Console.WriteLine(qm.GetQuotes(1));
+            return qm.GetQuotes(count);
+        }
     }
     
 }

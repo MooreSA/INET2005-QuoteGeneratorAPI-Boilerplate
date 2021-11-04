@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
 services:
-  
   mysql:
     build:
       context: ./mysql
@@ -18,10 +17,10 @@ services:
     # these variables could be stored in an external .env file as well
     # w0090347 will automatically be set to full access to sean_dotnetcoreSamples
     environment:
-      MYSQL_ROOT_PASSWORD: nscc
-      MYSQL_DATABASE: dotnetcoreSamples
-      MYSQL_USER: user
-      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: YOUR_PASSWORD_IS_BAD
+      MYSQL_DATABASE: quote_db
+      MYSQL_USER: quote_user
+      MYSQL_PASSWORD: password
     networks:
       - app-network
 
@@ -35,10 +34,10 @@ services:
       - app-network
 
 networks:
-    app-network:
-        driver: bridge
+  app-network:
+    driver: bridge
 
 volumes:
-    data-volume:
-    web-root:
-      driver: local
+  data-volume:
+  web-root:
+    driver: local
