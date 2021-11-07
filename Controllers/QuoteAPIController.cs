@@ -38,8 +38,11 @@ namespace quoteGeneratorAPI.Controllers {
         [Route("data/{count}")]
         public ActionResult<List<Quote>> Get(int count) {
             QuoteManager qm = new QuoteManager(_cache);
-            Console.WriteLine(qm.GetQuotes(1));
-            return qm.GetQuotes(count);
+            try {
+                return qm.GetQuotes(count);
+            } catch (Exception e) {
+                return BadRequest(e.Message);
+            }
         }
     }
     

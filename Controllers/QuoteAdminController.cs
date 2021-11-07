@@ -6,6 +6,8 @@ namespace QuoteGeneratorAPI.Controllers {
 
     public class QuoteAdminController : Controller {
 
+
+        [HttpGet]
         public IActionResult Index() {
             return View();
         }

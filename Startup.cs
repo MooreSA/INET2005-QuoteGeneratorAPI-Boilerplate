@@ -56,7 +56,7 @@ namespace QuoteGeneratorAPI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=QuoteAdmin}/{action=data}/{id?}");
+                    pattern: "{controller=QuoteAdmin}/{action=Index}/{id?}");
             });
         }
     }

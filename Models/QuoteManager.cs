@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Caching.Memory;
 
+
 namespace QuoteGeneratorAPI.Models {
 
     public class QuoteManager {
@@ -37,7 +38,6 @@ namespace QuoteGeneratorAPI.Models {
 
         // Return N random Quotes
         public List<Quote> GetQuotes(int n) {
-            Console.WriteLine(_quotes[0].Id);
             List<Quote> tempQuotes = new List<Quote>();
             Random rand = new Random();
             int index;
@@ -85,6 +85,9 @@ namespace QuoteGeneratorAPI.Models {
                 conn.Close();
             }
         }
+
+        // Add a quote to the DB
+        // public int AddQuote(Quote quote, IFormFile file)
 
 
     }
