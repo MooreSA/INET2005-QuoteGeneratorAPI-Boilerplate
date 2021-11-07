@@ -30,6 +30,12 @@ namespace QuoteGeneratorAPI.Models {
             }
 
         }
+        // Constructor for testing
+        // Does not use the cache
+        public QuoteManager () {
+            _quotes = new List<Quote>();
+            retrieveQuotes();
+        }
 
         // Return all Quotes
         public List<Quote> GetQuotes () {
@@ -85,10 +91,28 @@ namespace QuoteGeneratorAPI.Models {
                 conn.Close();
             }
         }
+        
+        // Adds a new quote
+        public bool addQuote(Quote quote) {
+            try {
+                conn = new MySqlConnection(Connection.CON_STRING);
+                conn.Open();
+                mysql = conn.CreateCommand();
+                mysql.Parameters.AddWithValue("@author", quote.Author);
+                mysql.Parameters.AddWithValue("@content", quote.Content);
+                mysql.Parameters.AddWithValue("@permalink", quote.PermaLink);
+                mysql.Parameters.AddWithValue("@image", quote.Image);
 
-        // Add a quote to the DB
-        // public int AddQuote(Quote quote, IFormFile file)
-
-
+                mysql.CommandText = "INSERT INTO quotes (author, quote, permalink, image) VALUES (@author, @content, @permalink, @image)";
+                mysql.ExecuteNonQuery();
+                return true;
+            } catch (Exception e) {
+                Console.WriteLine("Error Occured During DB Update");
+                Console.WriteLine(">> " + e);
+                return false;
+            } finally {
+                conn.Close();
+            }
+        }
     }
 }

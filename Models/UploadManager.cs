@@ -28,8 +28,8 @@ namespace QuoteGeneratorAPI.Models {
             this.rootPath = env.WebRootPath;
 
             // Create the target directory if it doesn't exist
-            if (!Directory.Exists (this.rootPath + this.targetPath)) {
-                Directory.CreateDirectory (this.rootPath + this.targetPath);
+            if (!Directory.Exists (this.rootPath + "/" + this.targetPath)) {
+                Directory.CreateDirectory (this.rootPath + "/" + this.targetPath);
             }
         }
 
@@ -38,6 +38,7 @@ namespace QuoteGeneratorAPI.Models {
         private int validateFile(IFormFile file) {
             // Check if file is null
             if (file == null) {
+                Console.WriteLine ("File is null");
                 return ERROR_NO_FILE;
             }
             // Check if file exists already
@@ -63,12 +64,12 @@ namespace QuoteGeneratorAPI.Models {
         // Upload a file to the server
         public int uploadFile(IFormFile fileToUpload) {
             // Validate the file
-            int result = validateFile (fileToUpload);
+            int result = validateFile(fileToUpload);
             if (result != VALID) {
                 return result;
             }
             // Create a FileStream to write to the file
-            FileStream fs = new FileStream(this.rootPath + this.targetPath + fileToUpload.FileName, FileMode.Create);
+            FileStream fs = new FileStream(this.rootPath + "/" + this.targetPath + "/" + fileToUpload.FileName, FileMode.Create);
             try {
                 // Use the FileStream to write to the file
                 fileToUpload.CopyTo(fs);
