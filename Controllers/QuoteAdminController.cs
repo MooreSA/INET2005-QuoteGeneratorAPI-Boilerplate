@@ -18,35 +18,41 @@ namespace QuoteGeneratorAPI.Controllers {
 
         [HttpGet]
         public IActionResult Index() {
-            return View();
+            return View("QuoteAdmin", new QuoteManager());
         }
 
         // Serve the add quote form
         [HttpGet]
-        [Route("/addquote")]
-        public IActionResult AddQuote() {
-            Quote quote = new Quote();
-            return View("Add", quote);
+        [Route("/quoteAdmin")]
+        public IActionResult QuoteAdmin() {
+            QuoteManager qm = new QuoteManager();
+            return View("QuoteAdmin", qm);
         }
 
         // Add a new quote to the database
         [HttpPost]
         [Route("/addquote")]
-        public IActionResult AddQuote(Quote quote, IFormFile Image) {
-            Console.WriteLine("File: " + Image);
+        public IActionResult AddQuote(QuoteManager qm, IFormFile Image) {
             UploadManager uploadManager = new UploadManager(env, UPLOAD_PATH);
             int result = uploadManager.uploadFile(Image);
             if (result == UploadManager.SUCCESS) {
-                quote.Image = Image.FileName;
-                QuoteManager quoteManager = new QuoteManager();
-                quoteManager.addQuote(quote);
-                return RedirectToAction("Index");
+                // Add the quote to the db
+                qm.quote.Image = uploadManager.Destination; // filename might be changed
+                qm.addQuote();
+                return RedirectToAction("Index"); // Redirect to the index page
             } else {
                 Console.WriteLine("Error uploading file");
                 Console.WriteLine("ERROR CODE: " + result);
-                return View("Add", quote);
+                return View("QuoteAdmin", qm);
             }
         }
 
+        [HttpPost]
+        [Route("/deletequote")]
+        public IActionResult DeleteQuote(QuoteManager qm) {
+            Console.WriteLine("Deleting quote: " + qm.id);
+            qm.deleteQuote();
+            return RedirectToAction("Index");
+        }
     }
 }

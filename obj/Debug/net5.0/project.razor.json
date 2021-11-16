@@ -15629,18 +15629,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/Views/QuoteAdmin/Add.cshtml",
-      "TargetPath": "Views\\QuoteAdmin\\Add.cshtml",
+      "FilePath": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/Views/QuoteAdmin/QuoteAdmin.cshtml",
+      "TargetPath": "Views\\QuoteAdmin\\QuoteAdmin.cshtml",
       "FileKind": "mvc"
     },
     {
       "FilePath": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/Views/QuoteAdmin/Index.cshtml",
-      "TargetPath": "Views\\QuoteAdmin\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

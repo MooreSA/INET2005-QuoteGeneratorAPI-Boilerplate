@@ -13,27 +13,43 @@ namespace QuoteGeneratorAPI.Models {
         private MySqlCommand mysql;
         private MySqlDataReader reader;
 
+        public Quote quote {get; set;}
+        public int id {get; set;}
 
-        public QuoteManager (IMemoryCache _env){
+        public List<Quote> quotes {
+            get {
+                if (_quotes == null) {
+                    _quotes = new List<Quote>();
+                }
+                return _quotes;
+            }
+            set {
+                _quotes = value;
+            }
+        }
+
+
+        public QuoteManager (IMemoryCache env){
             _quotes = new List<Quote>();
+            quote = new Quote();
 
             List<Quote> tempQuotes;
             // Check if the quotes are in the cache
             MemoryCacheEntryOptions memOptions = new MemoryCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromMinutes(60));
 
-            if (!_env.TryGetValue("quotes", out tempQuotes)) {
+            if (!env.TryGetValue("quotes", out tempQuotes)) {
                 retrieveQuotes();
-                _env.Set("quotes", _quotes, memOptions);
+                env.Set("quotes", _quotes, memOptions);
             } else {
-                _quotes = tempQuotes;
+                quotes = tempQuotes;
             }
-
         }
         // Constructor for testing
         // Does not use the cache
         public QuoteManager () {
             _quotes = new List<Quote>();
+            quote = new Quote();
             retrieveQuotes();
         }
 
@@ -44,6 +60,7 @@ namespace QuoteGeneratorAPI.Models {
 
         // Return N random Quotes
         public List<Quote> GetQuotes(int n) {
+            // Set up a temporary list to hold the random quotes
             List<Quote> tempQuotes = new List<Quote>();
             Random rand = new Random();
             int index;
@@ -93,7 +110,7 @@ namespace QuoteGeneratorAPI.Models {
         }
         
         // Adds a new quote
-        public bool addQuote(Quote quote) {
+        public bool addQuote() {
             try {
                 conn = new MySqlConnection(Connection.CON_STRING);
                 conn.Open();
@@ -111,6 +128,31 @@ namespace QuoteGeneratorAPI.Models {
                 Console.WriteLine(">> " + e);
                 return false;
             } finally {
+                conn.Close();
+            }
+        }
+        // Deletes the selected quote
+        public bool deleteQuote() {
+            // If the quote ID is not set, return false
+            Console.WriteLine("Deleting Quote: " + id);
+            if (id == 0) {
+                return false;
+            }
+            // Try to delete the quote
+            try {
+                conn = new MySqlConnection(Connection.CON_STRING);
+                conn.Open();
+                mysql = conn.CreateCommand();
+                mysql.Parameters.AddWithValue("@id", id);
+                mysql.CommandText = "DELETE FROM quotes WHERE id = @id";
+                mysql.ExecuteNonQuery();
+                return true;
+            } catch (Exception e) {
+                Console.WriteLine("Error Occured During DB Update");
+                Console.WriteLine(">> " + e);
+                return false;
+            } finally {
+                // Close the connection
                 conn.Close();
             }
         }

@@ -36,7 +36,6 @@
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/QuoteGeneratorAPI.TagHelpers.input.cache
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/QuoteGeneratorAPI.TagHelpers.output.cache
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/QuoteGeneratorAPI.RazorCoreGenerate.cache
-/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/Razor/Views/QuoteAdmin/Index.cshtml.g.cs
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/Razor/Views/Shared/_ValidationScriptsPartial.cshtml.g.cs
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/Razor/Views/_ViewImports.cshtml.g.cs
@@ -49,4 +48,4 @@
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/ref/QuoteGeneratorAPI.dll
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/QuoteGeneratorAPI.pdb
 /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/QuoteGeneratorAPI.genruntimeconfig.cache
-/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/Razor/Views/QuoteAdmin/Add.cshtml.g.cs
+/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/Debug/net5.0/Razor/Views/QuoteAdmin/QuoteAdmin.cshtml.g.cs

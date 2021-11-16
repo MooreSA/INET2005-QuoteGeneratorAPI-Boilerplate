@@ -1,0 +1,47 @@
+@model QuoteManager
+<div class="row">
+    <h1>Quote Administration</h1>
+</div>
+<div class="row">
+    <h2>Add a quote</h2>
+</div>
+<div class="row">
+    <form enctype="multipart/form-data" method="post" asp-controller="QuoteAdmin" asp-action="AddQuote">
+        <div class="form-group">
+            <label asp-for="quote.Content">Quote</label>
+            <input type="text" class="form-control" id="quote" asp-for="@Model.quote.Content" value="@Model.quote.Content" placeholder="Quote Text">
+        </div>
+        <div class="form-group">
+            <label asp-for="quote.Author">Author</label>
+            <input type="text" class="form-control" id="author" asp-for="@Model.quote.Author" value="@Model.quote.Author" placeholder="Author">
+        </div>
+        <div class="form-group">
+            <label asp-for="quote.PermaLink">PermaLink</label>
+            <input type="text" class="form-control" id="permaLink" asp-for="@Model.quote.PermaLink" value="@Model.quote.PermaLink" placeholder="Link to Quote">
+        </div>
+        <div class="form-group">
+            <label for="Image">Image</label>
+            <input type="file" id="image" name="Image" placeholder="Image">
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>
+<div class="row">
+    <h2>Delete a Quote</h2>
+</div>
+<div class="row">
+    <form method="post" asp-controller="QuoteAdmin" asp-action="DeleteQuote">
+        <div class="form-group">
+            <label asp-for="id">Quote to Delete</label>
+            <select class="form-control" asp-for="id">
+                <option value="0">Select a Quote</option>
+                @foreach (Quote quote in @Model.quotes) {
+                    <option value="@quote.Id">@quote.Content</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </div>
+    </form>
+</div>

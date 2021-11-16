@@ -16,11 +16,14 @@ namespace QuoteGeneratorAPI.Models {
         public const int VALID = 6;
         public const int SUCCESS = 7;
 
-        public const int UPLOAD_MAX_SIZE = 10485760; // 10MB
-        public const int UPLOAD_MAX_NAME_LENGTH = 255;
+        // Set the max upload size to 4mb
+        public const int MAX_UPLOAD_SIZE = 4194304;
+        public const int UPLOAD_MAX_NAME_LENGTH = 100;
 
         private string targetPath;
         private string rootPath;
+
+        private string _destination;
 
         // Constructor
         public UploadManager(IWebHostEnvironment env, string targetPath) {
@@ -30,6 +33,12 @@ namespace QuoteGeneratorAPI.Models {
             // Create the target directory if it doesn't exist
             if (!Directory.Exists (this.rootPath + "/" + this.targetPath)) {
                 Directory.CreateDirectory (this.rootPath + "/" + this.targetPath);
+            }
+        }
+
+        public string Destination {
+            get {
+                return _destination;
             }
         }
 
@@ -46,11 +55,14 @@ namespace QuoteGeneratorAPI.Models {
                 return ERROR_FILE_EXISTS;
             }
             // Check if file is of correct type
-            if (!file.FileName.EndsWith (".png") && !file.FileName.EndsWith (".jpg") && !file.FileName.EndsWith (".jpeg")) {
+            if (!file.FileName.EndsWith (".png") 
+            && !file.FileName.EndsWith (".jpg") 
+            && !file.FileName.EndsWith (".jpeg") 
+            && !file.FileName.EndsWith (".gif")) {
                 return ERROR_FILETYPE;
             }
             // Check if file is of correct size
-            if (file.Length > UPLOAD_MAX_SIZE) {
+            if (file.Length > MAX_UPLOAD_SIZE) {
                 return ERROR_FILESIZE;
             }
             // Check if file name is too long
@@ -61,15 +73,29 @@ namespace QuoteGeneratorAPI.Models {
             return VALID;
         }
 
+
         // Upload a file to the server
         public int uploadFile(IFormFile fileToUpload) {
             // Validate the file
             int result = validateFile(fileToUpload);
-            if (result != VALID) {
+
+            if (result != VALID && result != ERROR_FILE_EXISTS) {
                 return result;
             }
+
+            // Get the destination of the file
+
+            // if the file exists
+            if (result == ERROR_FILE_EXISTS){
+                // rename the destination
+                _destination = this.rootPath + "/" + 
+                this.targetPath + "/" 
+                + DateTime.Now.ToString("yyyyMMddHHmmss") + fileToUpload.FileName;
+            } else {
+                _destination = this.rootPath + "/" + this.targetPath + "/" + fileToUpload.FileName;
+            }
             // Create a FileStream to write to the file
-            FileStream fs = new FileStream(this.rootPath + "/" + this.targetPath + "/" + fileToUpload.FileName, FileMode.Create);
+            FileStream fs = new FileStream(_destination, FileMode.Create);
             try {
                 // Use the FileStream to write to the file
                 fileToUpload.CopyTo(fs);
