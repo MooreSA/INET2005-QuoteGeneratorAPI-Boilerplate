@@ -1,13 +1,26 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuoteGeneratorAPI.Models {
 
     public class Quote {
 
+        [Key]
         private int _id;
+
+        [Required]
+        [MaxLength(100)]
         private string _author;
+
+        [Required]
+        [MaxLength(500)]
         private string _content;
+
+        [Url]
         private string _permaLink;
+
+        [Required]
+        [MaxLength(100)]
         private string _image;
 
         public Quote() {

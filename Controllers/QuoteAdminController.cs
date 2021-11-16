@@ -33,12 +33,18 @@ namespace QuoteGeneratorAPI.Controllers {
         [HttpPost]
         [Route("/addquote")]
         public IActionResult AddQuote(QuoteManager qm, IFormFile Image) {
+            
             UploadManager uploadManager = new UploadManager(env, UPLOAD_PATH);
+
             int result = uploadManager.uploadFile(Image);
+
             if (result == UploadManager.SUCCESS) {
-                // Add the quote to the db
-                qm.quote.Image = uploadManager.Destination; // filename might be changed
+                Console.WriteLine("Uploaded file to: " + uploadManager.Destination);
+
+                qm.quote.Image = uploadManager.getFileName(); // filename might be changed
+
                 qm.addQuote();
+
                 return RedirectToAction("Index"); // Redirect to the index page
             } else {
                 Console.WriteLine("Error uploading file");

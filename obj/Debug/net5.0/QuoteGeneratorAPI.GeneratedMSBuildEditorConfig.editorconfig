@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = QuoteGeneratorAPI
-build_property.ProjectDir = /Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/
+build_property.ProjectDir = F:\School\NSCC\Fall 2021\INET2005\Project-2\INET2005-QuoteGeneratorAPI-Boilerplate\
