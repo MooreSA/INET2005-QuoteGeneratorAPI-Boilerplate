@@ -95,11 +95,11 @@ namespace QuoteGeneratorAPI.Models {
 
                 while(reader.Read()) {
                     Quote quote = new Quote();
-                    quote.Id = reader.GetInt32(0);
-                    quote.Author = reader.GetString(1);
-                    quote.Content = reader.GetString(2);
-                    quote.PermaLink = reader.GetString(3);
-                    quote.Image = reader.GetString(4);
+                    quote.id = reader.GetInt32(0);
+                    quote.author = reader.GetString(1);
+                    quote.content = reader.GetString(2);
+                    quote.permaLink = reader.GetString(3);
+                    quote.image = reader.GetString(4);
                     _quotes.Add(quote);
                 }
             } catch (Exception e) {
@@ -111,14 +111,17 @@ namespace QuoteGeneratorAPI.Models {
         
         // Adds a new quote
         public bool addQuote() {
+            Console.WriteLine("Adding quote");
+            Console.WriteLine("Permalink: " + quote.permaLink);
+
             try {
                 conn = new MySqlConnection(Connection.CON_STRING);
                 conn.Open();
                 mysql = conn.CreateCommand();
-                mysql.Parameters.AddWithValue("@author", quote.Author);
-                mysql.Parameters.AddWithValue("@content", quote.Content);
-                mysql.Parameters.AddWithValue("@permalink", quote.PermaLink);
-                mysql.Parameters.AddWithValue("@image", quote.Image);
+                mysql.Parameters.AddWithValue("@author", quote.author);
+                mysql.Parameters.AddWithValue("@content", quote.content);
+                mysql.Parameters.AddWithValue("@permalink", quote.permaLink);
+                mysql.Parameters.AddWithValue("@image", quote.image);
 
                 mysql.CommandText = "INSERT INTO quotes (author, quote, permalink, image) VALUES (@author, @content, @permalink, @image)";
                 mysql.ExecuteNonQuery();

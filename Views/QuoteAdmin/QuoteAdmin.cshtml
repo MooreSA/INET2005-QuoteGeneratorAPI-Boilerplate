@@ -8,20 +8,24 @@
 <div class="row">
     <form enctype="multipart/form-data" method="post" asp-controller="QuoteAdmin" asp-action="AddQuote">
         <div class="form-group">
-            <label asp-for="quote.Content">Quote</label>
-            <input type="text" class="form-control" id="quote" asp-for="@Model.quote.Content" value="@Model.quote.Content" placeholder="Quote Text">
+            <label asp-for="quote.content">Quote</label>
+            <input type="text" class="form-control" id="quote" asp-for="@Model.quote.content" value="@Model.quote.content" placeholder="Quote Text">
+            <span class="text-danger" asp-validation-for="@Model.quote.content"></span>
         </div>
         <div class="form-group">
-            <label asp-for="quote.Author">Author</label>
-            <input type="text" class="form-control" id="author" asp-for="@Model.quote.Author" value="@Model.quote.Author" placeholder="Author">
+            <label asp-for="quote.author">Author</label>
+            <input type="text" class="form-control" id="author" asp-for="@Model.quote.author" value="@Model.quote.author" placeholder="Author">
+            <span class="text-danger" asp-validation-for="@Model.quote.author"></span>
         </div>
         <div class="form-group">
-            <label asp-for="quote.PermaLink">PermaLink</label>
-            <input type="text" class="form-control" id="permaLink" asp-for="@Model.quote.PermaLink" value="@Model.quote.PermaLink" placeholder="Link to Quote">
+            <label asp-for="quote.permaLink">PermaLink</label>
+            <input type="text" class="form-control" id="permaLink" asp-for="@Model.quote.permaLink" value="@Model.quote.permaLink" placeholder="Link to Quote">
+            <span class="text-danger" asp-validation-for="@Model.quote.permaLink"></span>
         </div>
         <div class="form-group">
             <label for="Image">Image</label>
             <input type="file" id="image" name="Image" placeholder="Image">
+            <span class="text-danger" asp-validation-for="@Model.quote.image"></span>
         </div>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
@@ -36,7 +40,7 @@
             <select class="form-control" asp-for="id">
                 <option value="0">Select a Quote</option>
                 @foreach (Quote quote in @Model.quotes) {
-                    <option value="@quote.Id">@quote.Content</option>
+                    <option value="@quote.id">@quote.content</option>
                 }
             </select>
         </div>

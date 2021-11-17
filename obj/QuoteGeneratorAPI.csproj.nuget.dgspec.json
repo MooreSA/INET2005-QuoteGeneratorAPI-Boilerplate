@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\QuoteGeneratorAPI.csproj": {}
+    "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/QuoteGeneratorAPI.csproj": {}
   },
   "projects": {
-    "F:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\QuoteGeneratorAPI.csproj": {
+    "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/QuoteGeneratorAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\QuoteGeneratorAPI.csproj",
+        "projectUniqueName": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/QuoteGeneratorAPI.csproj",
         "projectName": "QuoteGeneratorAPI",
-        "projectPath": "F:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\QuoteGeneratorAPI.csproj",
-        "packagesPath": "C:\\Users\\Seamus\\.nuget\\packages\\",
-        "outputPath": "F:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\obj\\",
+        "projectPath": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/QuoteGeneratorAPI.csproj",
+        "packagesPath": "/Users/seamusmoore/.nuget/packages/",
+        "outputPath": "/Users/seamusmoore/Programming/inet/INET2005-QuoteGeneratorAPI-Boilerplate/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Seamus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/seamusmoore/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }

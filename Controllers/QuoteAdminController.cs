@@ -33,7 +33,7 @@ namespace QuoteGeneratorAPI.Controllers {
         [HttpPost]
         [Route("/addquote")]
         public IActionResult AddQuote(QuoteManager qm, IFormFile Image) {
-            
+
             UploadManager uploadManager = new UploadManager(env, UPLOAD_PATH);
 
             int result = uploadManager.uploadFile(Image);
@@ -41,10 +41,17 @@ namespace QuoteGeneratorAPI.Controllers {
             if (result == UploadManager.SUCCESS) {
                 Console.WriteLine("Uploaded file to: " + uploadManager.Destination);
 
-                qm.quote.Image = uploadManager.getFileName(); // filename might be changed
+                qm.quote.image = uploadManager.getFileName(); // filename might be changed
 
+                if (!qm.quote.isValid()) {
+                    Console.WriteLine("Quote Author: " + qm.quote.author);
+                    Console.WriteLine("Quote Content: " + qm.quote.content);
+                    Console.WriteLine("Quote Permalink: " + qm.quote.permaLink);
+                    Console.WriteLine("Quote Image: " + qm.quote.image);
+                    Console.WriteLine("Model state is not valid");
+                return View("QuoteAdmin", qm);
+                }
                 qm.addQuote();
-
                 return RedirectToAction("Index"); // Redirect to the index page
             } else {
                 Console.WriteLine("Error uploading file");
