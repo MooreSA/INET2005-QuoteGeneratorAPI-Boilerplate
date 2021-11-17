@@ -18,6 +18,9 @@ namespace QuoteGeneratorAPI.Controllers {
 
         [HttpGet]
         public IActionResult Index() {
+            if (TempData["Message"] != null) {
+                ViewBag.Message = TempData["Message"];
+            }
             return View("QuoteAdmin", new QuoteManager());
         }
 
@@ -52,10 +55,20 @@ namespace QuoteGeneratorAPI.Controllers {
                 return View("QuoteAdmin", qm);
                 }
                 qm.addQuote();
+                TempData["Message"] = "Quote Added Successfully";
                 return RedirectToAction("Index"); // Redirect to the index page
             } else {
                 Console.WriteLine("Error uploading file");
                 Console.WriteLine("ERROR CODE: " + result);
+                if (result == UploadManager.ERROR_NO_FILE) {
+                    ViewBag.Error = "No file was selected";
+                } else if (result == UploadManager.ERROR_FILETYPE) {
+                    ViewBag.Error = "File type is not supported";
+                } else if (result == UploadManager.ERROR_FILESIZE) {
+                    ViewBag.Error = "File size is too large";
+                } else if (result == UploadManager.ERROR_SAVING) {
+                    ViewBag.Error = "Error saving file";
+                }
                 return View("QuoteAdmin", qm);
             }
         }
@@ -63,8 +76,12 @@ namespace QuoteGeneratorAPI.Controllers {
         [HttpPost]
         [Route("/deletequote")]
         public IActionResult DeleteQuote(QuoteManager qm) {
-            Console.WriteLine("Deleting quote: " + qm.id);
+            UploadManager uploadManager = new UploadManager(env, UPLOAD_PATH);
+
+            uploadManager.deleteFile(qm.getFileName());
             qm.deleteQuote();
+            TempData["Message"] = "Quote Deleted Successfully";
+
             return RedirectToAction("Index");
         }
     }

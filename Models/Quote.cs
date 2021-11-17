@@ -14,7 +14,9 @@ namespace QuoteGeneratorAPI.Models {
         [Required]
         [StringLength(500)]
         public string content { get; set; }
-        public string permaLink { get; set; }
+        
+        [Url]
+        public string permaLink  { get; set; }
         
         public string image { get; set; }
 
@@ -42,6 +44,8 @@ namespace QuoteGeneratorAPI.Models {
                     Console.WriteLine("PermaLink is invalid");
                     return false;
                 }
+            } else if (permaLink == null) {
+                permaLink = "";
             } else if (image == null) {
                 return false;
             }

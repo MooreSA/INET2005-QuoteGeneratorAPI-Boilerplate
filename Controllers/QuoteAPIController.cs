@@ -25,19 +25,21 @@ namespace quoteGeneratorAPI.Controllers {
         [HttpGet]
         // the URL routing - Web APIs must have one
         [Route("data/")]
-        public ActionResult<List<string>> Get() {
-            // for this action method to return JSON, you only need to have it return a List of data
-            // this test List is an example only!
-            List<string> test = new List<string>() { "hello","world","with","json" };
-            
-            // test this out by hitting https://localhost:5001/data
-            return test;
+        public ActionResult<List<Quote>> Get() {
+            // QuoteManager qm = new QuoteManager(_cache);
+            QuoteManager qm = new QuoteManager();
+            try {
+                return qm.GetQuotes();
+            } catch (Exception e) {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("data/{count}")]
         public ActionResult<List<Quote>> Get(int count) {
-            QuoteManager qm = new QuoteManager(_cache);
+            // QuoteManager qm = new QuoteManager(_cache);
+            QuoteManager qm = new QuoteManager();
             try {
                 return qm.GetQuotes(count);
             } catch (Exception e) {

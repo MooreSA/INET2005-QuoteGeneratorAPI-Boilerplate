@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS quotes (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   author varchar(100) NOT NULL,
   quote varchar(1000) NOT NULL,
-  permalink varchar(100) NOT NULL,
+  permalink varchar(100),
   image varchar(100) NOT NULL
 );
 

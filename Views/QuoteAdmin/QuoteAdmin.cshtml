@@ -6,14 +6,17 @@
     <h2>Add a quote</h2>
 </div>
 <div class="row">
+    <h4>@ViewBag.Message</h4>
+</div>
+<div class="row">
     <form enctype="multipart/form-data" method="post" asp-controller="QuoteAdmin" asp-action="AddQuote">
         <div class="form-group">
-            <label asp-for="quote.content">Quote</label>
+            <label asp-for="quote.content">Quote <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="quote" asp-for="@Model.quote.content" value="@Model.quote.content" placeholder="Quote Text">
             <span class="text-danger" asp-validation-for="@Model.quote.content"></span>
         </div>
         <div class="form-group">
-            <label asp-for="quote.author">Author</label>
+            <label asp-for="quote.author">Author <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="author" asp-for="@Model.quote.author" value="@Model.quote.author" placeholder="Author">
             <span class="text-danger" asp-validation-for="@Model.quote.author"></span>
         </div>
@@ -23,9 +26,9 @@
             <span class="text-danger" asp-validation-for="@Model.quote.permaLink"></span>
         </div>
         <div class="form-group">
-            <label for="Image">Image</label>
+            <label for="Image">Image <span class="text-danger">*</span></label>
             <input type="file" id="image" name="Image" placeholder="Image">
-            <span class="text-danger" asp-validation-for="@Model.quote.image"></span>
+            <span class="text-danger">@ViewBag.error</span>
         </div>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
@@ -40,7 +43,13 @@
             <select class="form-control" asp-for="id">
                 <option value="0">Select a Quote</option>
                 @foreach (Quote quote in @Model.quotes) {
-                    <option value="@quote.id">@quote.content</option>
+                    <option value="@quote.id">@{if (@quote.content.Length > 100) {
+                            @quote.content.Substring(0, 100);
+                        }
+                        else {
+                            @quote.content;
+                        }
+                    }</option>
                 }
             </select>
         </div>

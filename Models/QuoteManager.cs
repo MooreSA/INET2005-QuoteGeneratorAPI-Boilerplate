@@ -137,7 +137,6 @@ namespace QuoteGeneratorAPI.Models {
         // Deletes the selected quote
         public bool deleteQuote() {
             // If the quote ID is not set, return false
-            Console.WriteLine("Deleting Quote: " + id);
             if (id == 0) {
                 return false;
             }
@@ -158,6 +157,23 @@ namespace QuoteGeneratorAPI.Models {
                 // Close the connection
                 conn.Close();
             }
+        }
+        // Populate the quote from the current ID
+        public string getFileName() {
+            string fileName;
+            using (MySqlConnection conn = new MySqlConnection(Connection.CON_STRING)) {
+                mysql = conn.CreateCommand();
+                mysql.CommandText = "SELECT image FROM quotes WHERE id = @id";
+                mysql.Parameters.AddWithValue("@id", id);
+                try {
+                    conn.Open();
+                    fileName = (string) mysql.ExecuteScalar();
+                } catch (Exception e) {
+                    Console.WriteLine("ERROR Getting FileName: " + e.Message);
+                    return null;
+                }
+            }
+            return fileName;
         }
     }
 }

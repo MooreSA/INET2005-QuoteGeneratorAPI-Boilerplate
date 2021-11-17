@@ -15617,6 +15617,32 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "QuoteGeneratorAPI",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "f:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\School\\NSCC\\Fall 2021\\INET2005\\Project-2\\INET2005-QuoteGeneratorAPI-Boilerplate\\Views\\QuoteAdmin\\QuoteAdmin.cshtml",
+      "TargetPath": "Views\\QuoteAdmin\\QuoteAdmin.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }

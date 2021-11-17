@@ -114,5 +114,24 @@ namespace QuoteGeneratorAPI.Models {
                 fs.Close(); // Close the FileStream
             }
         }
+
+        public int deleteFile (string fileName) {
+            Console.WriteLine("Deleting file: " + fileName);
+            if (fileName == null) {
+                return ERROR_NO_FILE;
+            }
+            string filePath = this.rootPath + "/" + this.targetPath + "/" + fileName;
+            if (!File.Exists (filePath)) {
+                return ERROR_NO_FILE;
+            }
+            try {
+                File.Delete(filePath);
+            } catch (Exception e) {
+                Console.WriteLine("Error Deleting file: " + fileName);
+                Console.WriteLine(">>> MESSAGE:" + e.Message);
+                return ERROR_SAVING;
+            }
+            return SUCCESS;
+        }
     }
 }
